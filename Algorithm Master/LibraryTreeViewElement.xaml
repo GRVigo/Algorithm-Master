@@ -1,0 +1,43 @@
+﻿<Window x:Class="Algorithm_Master.LibraryTreeViewElement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Algorithm_Master"
+        mc:Ignorable="d"
+        Title="LibraryTreeViewElementWindow" Height="240" Width="320">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,6,0" VerticalAlignment="Center">
+            <TextBlock x:Name="TreeViewElementNameLabelText">Name:</TextBlock>
+        </Label>
+
+        <TextBox x:Name="TreeViewElementNameTextBox" Grid.Row="0" Grid.Column="1" Margin="0,6,3,6" TextChanged="TreeViewElementNameTextBox_TextChanged"/>
+
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,6,0">
+            <TextBlock x:Name="TreeViewElementDescriptionLabelText" Margin="0,6,0,0">Description:</TextBlock>
+        </Label>
+
+        <TextBox x:Name="TreeViewElementDescriptionTextBox" Grid.Row="1" Grid.Column="1" Height="120" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,3,0" MaxLines="50" VerticalScrollBarVisibility="Auto"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="TreeViewElementOKButton" MinWidth="100" Margin="6" Click="TreeViewElementOKButton_Click">
+				<TextBlock x:Name="TreeViewElementOKButtonText">OK</TextBlock>
+			</Button>
+            <Button x:Name="TreeViewElementCancelButton" MinWidth="80" Margin="6" Click="TreeViewElementCancelButton_Click">
+				<TextBlock x:Name="TreeViewElementCancelButtonText">Cancel</TextBlock>
+			</Button>
+        </StackPanel>
+    </Grid>
+</Window>

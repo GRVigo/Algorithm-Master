@@ -1,0 +1,209 @@
+﻿<Window x:Class="Algorithm_Master.TranslationTool"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Algorithm_Master"
+        mc:Ignorable="d"
+        Title="Translation tool" Height="240" Width="920" Closing="Window_Closing" ShowInTaskbar="False" MinWidth="240" MinHeight="120" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Style="{StaticResource GridTitleStyle}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" VerticalAlignment="Center" Margin="6,0,0,0">
+                <TextBlock x:Name="TranslationMainLabelText" Style="{StaticResource TextBlockTitleStyle}">Language files</TextBlock>
+            </Label>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+
+                <Label VerticalAlignment="Center">
+                    <TextBlock x:Name="LanguageEditLabelText">Language file to edit</TextBlock>
+                </Label>
+
+                <ComboBox x:Name="LanguageEditComboBox" Style="{StaticResource ComboBoxDefaultStyle}" SelectionChanged="LanguageEditComboBox_SelectionChanged">
+                    <ComboBox.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock x:Name="LanguageEditComboToolTipHeader" Style="{StaticResource TextBlockToolTipHeaderStyle}">Select a language file</TextBlock>
+                                <TextBlock x:Name="LanguageEditComboToolTipBody" Style="{StaticResource TextBlockToolTipBodyStyle}">Select a language file to edit or create a new file</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+
+                <Separator Width="6" Visibility="Hidden"/>
+
+                <TextBox x:Name="LanguageEditNewTextBox" MinWidth="100" Margin="6,6,9,6" Padding="6,1" VerticalAlignment="Center" IsEnabled="False" TextChanged="LanguageEditNewTextBox_TextChanged">
+                    <TextBox.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock x:Name="LanguageEditNewTextBoxToolTipHeader" Style="{StaticResource TextBlockToolTipHeaderStyle}">New language file name</TextBlock>
+                                <TextBlock x:Name="LanguageEditNewTextBoxToolTipBody" Style="{StaticResource TextBlockToolTipBodyStyle}">Write the new language file name without extension</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </TextBox.ToolTip>
+                </TextBox>
+
+                <Button x:Name="LanguageEditSaveButton" Style="{StaticResource ButtonTextStyle}" IsEnabled="False" Click="LanguageEditSaveButton_Click">
+                    <TextBlock x:Name="LanguageEditSaveButtonText">Save</TextBlock>
+                    <Button.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock x:Name="LanguageEditSaveButtonToolTipHeader" Style="{StaticResource TextBlockToolTipHeaderStyle}">Save current language file</TextBlock>
+                                <TextBlock x:Name="LanguageEditSaveButtonToolTipBody" Style="{StaticResource TextBlockToolTipBodyStyle}">Save current language changes</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+
+                <Separator Width="6" Visibility="Hidden"/>
+                
+                <Button x:Name="LanguageEditDeleteButton" Style="{StaticResource ButtonTextStyle}" IsEnabled="False" Click="LanguageEditDeleteButton_Click">
+                    <TextBlock x:Name="LanguageEditDeleteButtonText">Delete</TextBlock>
+                    <Button.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock x:Name="LanguageEditDeleteButtonToolTipHeader" Style="{StaticResource TextBlockToolTipHeaderStyle}">Delete language file</TextBlock>
+                                <TextBlock x:Name="LanguageEditDeleteButtonToolTipBody" Style="{StaticResource TextBlockToolTipBodyStyle}">Delete the selected language file</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+
+                <Separator Width="6" Visibility="Hidden"/>
+                
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Style="{StaticResource GridSubtitleStyle}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Label VerticalAlignment="Center">
+                    <TextBlock x:Name="TranslationTypeLabelText" Margin="9,0,0,0">Select text or message:</TextBlock>
+                </Label>
+                <ComboBox x:Name="LanguageTypeComboBox" Style="{StaticResource ComboBoxDefaultStyle}" SelectionChanged="LanguageTypeComboBox_SelectionChanged" IsEnabled="False">
+                    <ComboBoxItem>
+                        <TextBlock x:Name="LanguageTextComboBoxItemText">Text</TextBlock>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock x:Name="LanguageMessageComboBoxItemText">Message</TextBlock>
+                    </ComboBoxItem>
+                    <ComboBox.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock x:Name="LanguageTypeComboToolTipHeader" Style="{StaticResource TextBlockToolTipHeaderStyle}">Select a type to translate</TextBlock>
+                                <TextBlock x:Name="LanguageTypeComboToolTipBody" Style="{StaticResource TextBlockToolTipBodyStyle}">Select a type to translate (text or message)</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Label VerticalAlignment="Center">
+                    <TextBlock x:Name="TranslationItemLabelText" Margin="6,3,0,3">Select item to translate:</TextBlock>
+                </Label>
+                <ComboBox x:Name="LanguageItemComboBox" Style="{StaticResource ComboBoxDefaultStyle}" SelectionChanged="LanguageItemComboBox_SelectionChanged" IsEnabled="False">
+                    <ComboBox.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock x:Name="LanguageItemComboToolTipHeader" Style="{StaticResource TextBlockToolTipHeaderStyle}">Select an item to translate</TextBlock>
+                                <TextBlock x:Name="LanguageItemComboToolTipBody" Style="{StaticResource TextBlockToolTipBodyStyle}">Select an item to translate</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+                <Separator Width="6" Visibility="Hidden"/>
+                <Button x:Name="LanguageNextButton" Style="{StaticResource ButtonTextStyle}" IsEnabled="False" Click="LanguageNextButton_Click">
+                    <TextBlock x:Name="LanguageNextButtonText">Next item</TextBlock>
+                    <Button.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock x:Name="LanguageNextButtonToolTipHeader" Style="{StaticResource TextBlockToolTipHeaderStyle}">Next text</TextBlock>
+                                <TextBlock x:Name="LanguageNextButtonToolTipBody" Style="{StaticResource TextBlockToolTipBodyStyle}">Go to the next item to translate</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+                <Separator Width="6" Visibility="Hidden"/>
+                <Button x:Name="LanguageNextFreeButton" Style="{StaticResource ButtonTextStyle}" IsEnabled="False" Click="LanguageNextFreeButton_Click">
+                    <TextBlock x:Name="LanguageNextFreeButtonText">Next free item</TextBlock>
+                    <Button.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock x:Name="LanguageNextFreeButtonToolTipHeader" Style="{StaticResource TextBlockToolTipHeaderStyle}">Next free text</TextBlock>
+                                <TextBlock x:Name="LanguageNextFreeButtonToolTipBody" Style="{StaticResource TextBlockToolTipBodyStyle}">Go to the next free item to translate</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+                <Separator Width="6" Visibility="Hidden"/>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="2" Style="{StaticResource GridDefaultStyle}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <Label VerticalAlignment="Center">
+                    <TextBlock x:Name="TranslationReferenceLabelText" Margin="6,12,0,0">Reference text:</TextBlock>
+                </Label>
+                <TextBox x:Name="LanguageReferenceTextBox" MinWidth="100" Margin="3,3,9,1" Padding="6,1" VerticalAlignment="Center" IsReadOnly="True">
+                    <TextBox.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock x:Name="LanguageReferenceTextBoxToolTipHeader" Style="{StaticResource TextBlockToolTipHeaderStyle}">Reference text</TextBlock>
+                                <TextBlock x:Name="LanguageReferenceTextBoxToolTipBody" Style="{StaticResource TextBlockToolTipBodyStyle}">Default text for reference</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <Label VerticalAlignment="Center">
+                    <TextBlock x:Name="TranslationEditedLabelText" Margin="6,12,0,0">Translated text:</TextBlock>
+                </Label>
+                <TextBox x:Name="LanguageEditedTextBox" MinWidth="100" Margin="3,3,9,1" Padding="6,1" VerticalAlignment="Center" IsReadOnly="False" TextChanged="LanguageEditedTextBox_TextChanged" IsEnabled="False" KeyDown="LanguageEditedTextBox_KeyDown">
+                    <TextBox.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock x:Name="LanguageEditedTextBoxToolTipHeader" Style="{StaticResource TextBlockToolTipHeaderStyle}">Translated text</TextBlock>
+                                <TextBlock x:Name="LanguageEditedTextBoxToolTipBody" Style="{StaticResource TextBlockToolTipBodyStyle}">Translated text in the new language</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </TextBox.ToolTip>
+                </TextBox>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Label VerticalAlignment="Center">
+                <TextBlock x:Name="TranslationStadisticsLabelText" Margin="6,0,0,0">Translation stadistics</TextBlock>
+            </Label>
+        </StackPanel>
+
+    </Grid>
+</Window>

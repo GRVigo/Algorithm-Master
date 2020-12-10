@@ -1,0 +1,588 @@
+﻿<Application x:Class="Algorithm_Master.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:Algorithm_Master"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        
+        <!-- Grid title style -->
+        <Style TargetType="Grid" x:Key="GridTitleStyle">
+            <Setter Property="Background" Value="#FFB4B4B4"/>
+        </Style>
+
+        <!-- TextBlock title style -->
+        <Style TargetType="TextBlock" x:Key="TextBlockTitleStyle">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+        </Style>
+
+        <!-- TextBlock title style -->
+        <Style TargetType="TextBlock" x:Key="TextBlockDonateStyle">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="Foreground" Value="#FF3F3FF3" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+
+        <!-- Grid subtitle style -->
+        <Style TargetType="Grid" x:Key="GridSubtitleStyle">
+            <Setter Property="Background" Value="#FFD4D4D4"/>
+        </Style>
+        
+        <!-- TextBlock subtitle style -->
+        <Style TargetType="TextBlock" x:Key="TextBlockSubtitleStyle">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+        </Style>
+
+        <!-- Grid default style -->
+        <Style TargetType="Grid" x:Key="GridDefaultStyle">
+            <Setter Property="Background" Value="#FFE5E5E5"/>
+        </Style>
+
+        <!-- TextBlock default style -->
+        <Style TargetType="TextBlock" x:Key="TextBlockDefaultStyle">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <!-- Status StackPanel default style -->
+        <Style TargetType="StackPanel" x:Key="StackPanelStatusStyle">
+            <Setter Property="Background" Value="#FFF0F0F0"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+
+        <!-- Main tab Image style -->
+        <Style TargetType="Image" x:Key="ImageMainTabStyle">
+            <Setter Property="Stretch" Value="Fill"/>
+            <Setter Property="Width" Value="48"/>
+            <Setter Property="Height" Value="48"/>
+        </Style>
+
+        <!-- Tooltip TextBlock header style -->
+        <Style TargetType="TextBlock" x:Key="TextBlockToolTipHeaderStyle">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- Tooltip TextBlock body style -->
+        <Style TargetType="TextBlock" x:Key="TextBlockToolTipBodyStyle">
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style>
+        
+        <!-- Main tab TextBlock style -->
+        <Style TargetType="TextBlock" x:Key="TextBlockMainTabStyle">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- Small button text TextBlock style -->
+        <Style TargetType="TextBlock" x:Key="TextBlockTextStyle">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- Small button style -->
+        <Style TargetType="Button" x:Key="ButtonSmallStyle">
+            <Setter Property="Margin" Value="1,3,3,1"/>
+            <Setter Property="Padding" Value="3,1"/>
+            <Setter Property="MinWidth" Value="24"/>
+            <Setter Property="MinHeight" Value="24"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- Text button style -->
+        <Style TargetType="Button" x:Key="ButtonTextStyle">
+            <Setter Property="Margin" Value="3,3,3,1"/>
+            <Setter Property="Padding" Value="9,1"/>
+            <Setter Property="MinWidth" Value="24"/>
+            <Setter Property="MinHeight" Value="24"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <!-- Steps label style -->
+        <Style TargetType="Label" x:Key="LabelStepsStyle">
+            <Setter Property="Margin" Value="3,3,3,1"/>
+            <Setter Property="Padding" Value="3,1"/>
+            <Setter Property="MinWidth" Value="24"/>
+            <Setter Property="MinHeight" Value="24"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- ToolBarTray algorithm style -->
+        <Style TargetType="ToolBarTray" x:Key="ToolBarTrayAlgorithmStyle">
+            <Setter Property="Background" Value="#FF848484"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+
+        <!-- Toolbar algorithm style -->
+        <Style TargetType="ToolBar" x:Key="ToolBarAlgorithmStyle">
+            <Setter Property="Background" Value="#FF848484"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Width" Value="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ToolBarTray}}}"/>
+        </Style>
+
+        <!-- Green gradient brush -->
+        <LinearGradientBrush x:Key="GreenGradientBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#BBBBBB" Offset="0"/>
+            <GradientStop Color="#88FF88" Offset="0.2"/>
+            <GradientStop Color="#88FF88" Offset="0.5"/>
+            <GradientStop Color="#88FF88" Offset="0.8"/>
+            <GradientStop Color="#BBBBBB" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- Yellow gradient brush -->
+        <LinearGradientBrush x:Key="YellowGradientBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#BBBBBB" Offset="0"/>
+            <GradientStop Color="#FFFF88" Offset="0.2"/>
+            <GradientStop Color="#FFFF88" Offset="0.5"/>
+            <GradientStop Color="#FFFF88" Offset="0.8"/>
+            <GradientStop Color="#BBBBBB" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- White gradient brush -->
+        <LinearGradientBrush x:Key="WhiteGradientBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#BBBBBB" Offset="0"/>
+            <GradientStop Color="#FFFFFF" Offset="0.2"/>
+            <GradientStop Color="#FFFFFF" Offset="0.5"/>
+            <GradientStop Color="#FFFFFF" Offset="0.8"/>
+            <GradientStop Color="#BBBBBB" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- Grey gradient brush -->
+        <LinearGradientBrush x:Key="GreyGradientBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#888888" Offset="0"/>
+            <GradientStop Color="#BBBBBB" Offset="0.2"/>
+            <GradientStop Color="#BBBBBB" Offset="0.5"/>
+            <GradientStop Color="#BBBBBB" Offset="0.8"/>
+            <GradientStop Color="#888888" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- Algorithm Green button style -->
+        <Style TargetType="Button" x:Key="ScrambleButtonGreenBackKey">
+            <Setter Property="MinWidth" Value="32"/>
+            <Setter Property="MinHeight" Value="48"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="1,3,1,3"/>
+            <Setter Property="Padding" Value="3,1,3,1"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="{StaticResource GreenGradientBrush}"/>
+            <Setter Property="BorderThickness" Value="1,1,3,3"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+
+        <!-- Algorithm Yellow button style -->
+        <Style TargetType="Button" x:Key="ScrambleButtonYellowBackKey">
+            <Setter Property="MinWidth" Value="32"/>
+            <Setter Property="MinHeight" Value="48"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="1,3,1,3"/>
+            <Setter Property="Padding" Value="3,1,3,1"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="{StaticResource YellowGradientBrush}"/>
+            <Setter Property="BorderThickness" Value="1,1,3,3"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+
+        <!-- Algorithm White button style -->
+        <Style TargetType="Button" x:Key="ScrambleButtonWhiteBackKey">
+            <Setter Property="MinWidth" Value="32"/>
+            <Setter Property="MinHeight" Value="48"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="1,3,1,3"/>
+            <Setter Property="Padding" Value="3,1,3,1"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="{StaticResource WhiteGradientBrush}"/>
+            <Setter Property="BorderThickness" Value="1,1,3,3"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+
+        <!-- Algorithm Gray small button style -->
+        <Style TargetType="Button" x:Key="ScrambleSmallButtonGreyBackKey">
+            <Setter Property="MinWidth" Value="16"/>
+            <Setter Property="MinHeight" Value="24"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="1,2,1,2"/>
+            <Setter Property="Padding" Value="2,1,2,1"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="{StaticResource GreyGradientBrush}"/>
+            <Setter Property="BorderThickness" Value="1,1,2,2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+
+        <!-- Algorithm White small button style -->
+        <Style TargetType="Button" x:Key="ScrambleSmallButtonWhiteBackKey">
+            <Setter Property="MinWidth" Value="16"/>
+            <Setter Property="MinHeight" Value="24"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="1,2,1,2"/>
+            <Setter Property="Padding" Value="2,1,2,1"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="{StaticResource WhiteGradientBrush}"/>
+            <Setter Property="BorderThickness" Value="1,1,2,2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+
+        <!-- Algorithm Green small button style -->
+        <Style TargetType="Button" x:Key="ScrambleSmallButtonGreenBackKey">
+            <Setter Property="MinWidth" Value="16"/>
+            <Setter Property="MinHeight" Value="24"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="1,2,1,2"/>
+            <Setter Property="Padding" Value="2,1,2,1"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="{StaticResource GreenGradientBrush}"/>
+            <Setter Property="BorderThickness" Value="1,1,2,2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+
+        <!-- Algorithm Yellow small button style -->
+        <Style TargetType="Button" x:Key="ScrambleSmallButtonYellowBackKey">
+            <Setter Property="MinWidth" Value="16"/>
+            <Setter Property="MinHeight" Value="24"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="1,2,1,2"/>
+            <Setter Property="Padding" Value="2,1,2,1"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Background" Value="{StaticResource YellowGradientBrush}"/>
+            <Setter Property="BorderThickness" Value="1,1,2,2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+
+        <!-- TextBlock default tab title style -->
+        <Style TargetType="TextBlock" x:Key="TextBlockTabTitleStyle">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+		
+		<!-- Small tab TextBlock style -->
+        <Style TargetType="TextBlock" x:Key="TextBlockSmallTabStyle">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- ComboBox default style -->
+        <Style TargetType="ComboBox" x:Key="ComboBoxDefaultStyle">
+            <Setter Property="MinWidth" Value="120"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="9,3,0,3"/>
+        </Style>
+		
+		<!-- ComboBox small style -->
+        <Style TargetType="ComboBox" x:Key="ComboBoxSmallStyle">
+            <Setter Property="MinWidth" Value="32"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="6,1,6,1"/>
+			<Setter Property="Padding" Value="9,1"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+		 <!-- Horizontal split style -->
+        <Style TargetType="GridSplitter" x:Key="GridSplitterHorizontalStyle">
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="ShowsPreview" Value="False"/>
+			<Setter Property="Background" Value="#FF686868"/>
+        </Style>
+
+		 <!-- Vertical split style -->
+        <Style TargetType="GridSplitter" x:Key="GridSplitterVerticalStyle">
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="ShowsPreview" Value="False"/>
+			<Setter Property="Background" Value="#FF686868"/>
+        </Style>		
+				
+		<!-- Solid color brushes -->
+	    <SolidColorBrush x:Key="WhiteSolidBrush" Color="White" />
+        <SolidColorBrush x:Key="RedSolidBrush" Color="Red" />
+        <SolidColorBrush x:Key="GreenSolidBrush" Color="Green" />
+        <SolidColorBrush x:Key="BlueSolidBrush" Color="Blue" />
+        <SolidColorBrush x:Key="CyanSolidBrush" Color="Cyan" />
+        <SolidColorBrush x:Key="MagentaSolidBrush" Color="Magenta" />
+        <SolidColorBrush x:Key="YellowSolidBrush" Color="Yellow" />
+        <SolidColorBrush x:Key="OrangeSolidBrush" Color="Orange" />
+        <SolidColorBrush x:Key="OrangeRedSolidBrush" Color="OrangeRed" />
+
+        <!-- Donate border styles -->
+        <Style TargetType="Border" x:Key="SettingsBorderDonate">
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="BorderBrush" Value="{StaticResource OrangeSolidBrush}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
+
+        <!-- Chronometer border styles -->
+        <Style TargetType="Border" x:Key="ChronoBorderInitialWait">
+            <Setter Property="Background" Value="#FFE8E8E8"/>
+            <Setter Property="BorderBrush" Value="{StaticResource WhiteGradientBrush}"/>
+			<Setter Property="BorderThickness" Value="8"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Margin" Value="0,12,0,0"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="ChronoBorderPreStart">
+            <Setter Property="Background" Value="#FFE8E8E8"/>
+            <Setter Property="BorderBrush" Value="{StaticResource WhiteSolidBrush}"/>
+			<Setter Property="BorderThickness" Value="8"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Margin" Value="0,12,0,0"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="ChronoBorderInspection">
+            <Setter Property="Background" Value="#FFE8E8E8"/>
+            <Setter Property="BorderBrush" Value="{StaticResource YellowSolidBrush}"/>
+			<Setter Property="BorderThickness" Value="8"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Margin" Value="0,12,0,0"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="ChronoBorderInspection8s">
+            <Setter Property="Background" Value="#FFE8E8E8"/>
+            <Setter Property="BorderBrush" Value="{StaticResource OrangeSolidBrush}"/>
+			<Setter Property="BorderThickness" Value="8"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Margin" Value="0,12,0,0"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="ChronoBorderInspection12s">
+            <Setter Property="Background" Value="#FFE8E8E8"/>
+            <Setter Property="BorderBrush" Value="{StaticResource OrangeRedSolidBrush}"/>
+			<Setter Property="BorderThickness" Value="8"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Margin" Value="0,12,0,0"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="ChronoBorderInspection15s">
+            <Setter Property="Background" Value="#FFE8E8E8"/>
+            <Setter Property="BorderBrush" Value="{StaticResource RedSolidBrush}"/>
+			<Setter Property="BorderThickness" Value="8"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Margin" Value="0,12,0,0"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="ChronoBorderWaitingStart">
+            <Setter Property="Background" Value="#FFE8E8E8"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BlueSolidBrush}"/>
+			<Setter Property="BorderThickness" Value="8"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Margin" Value="0,12,0,0"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="ChronoBorderRunning">
+            <Setter Property="Background" Value="#FFE8E8E8"/>
+            <Setter Property="BorderBrush" Value="{StaticResource GreenSolidBrush}"/>
+			<Setter Property="BorderThickness" Value="8"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Margin" Value="0,12,0,0"/>
+        </Style>
+
+        <Style TargetType="Border" x:Key="ChronoBorderFinished">
+            <Setter Property="Background" Value="#FFE8E8E8"/>
+            <Setter Property="BorderBrush" Value="{StaticResource WhiteGradientBrush}"/>
+			<Setter Property="BorderThickness" Value="8"/>
+			<Setter Property="CornerRadius" Value="16"/>
+			<Setter Property="Margin" Value="0,12,0,0"/>
+        </Style>				
+		
+		<!-- TextBlock chronometer time style -->
+        <Style TargetType="TextBlock" x:Key="TextBlockChronoTimeStyle">
+            <Setter Property="Margin" Value="40,20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="48"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+				
+		<!-- Button chronometer time style -->
+        <Style TargetType="Button" x:Key="ButtonChronoTimeStyle">
+            <Setter Property="Margin" Value="18,6"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Padding" Value="20,9"/>
+        </Style>
+		
+		<!-- TextBlock button chronometer time style -->
+        <Style TargetType="TextBlock" x:Key="TextButtonChronoTimeStyle">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontStyle" Value="Italic"/>
+        </Style>	
+		
+		<!-- Label stadistics style -->
+        <Style TargetType="Label" x:Key="LabelStadisticsStyle">
+            <Setter Property="Margin" Value="6,0"/>
+			<Setter Property="Padding" Value="1"/>
+        </Style>
+		
+		<!-- DatePicker default style -->
+        <Style TargetType="DatePicker" x:Key="DatePickerDefaultStyle">
+            <Setter Property="Margin" Value="0,3"/>
+			<Setter Property="Padding" Value="6,1"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Width" Value="120"/>
+        </Style>
+		
+		<!-- Menu default style -->
+        <Style TargetType="Menu" x:Key="MenuDefaultStyle">
+            <Setter Property="Margin" Value="1,3,9,3"/>
+			<Setter Property="Padding" Value="6,1"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="BorderThickness" Value="1"/>
+        </Style>
+		
+		<!-- TextBlock GridView column header style -->
+        <Style TargetType="TextBlock" x:Key="TextGridViewHeaderStyle">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- Style for 2D buttons (no events) -->
+        <Style x:Key="Button2DStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness="2"
+                            Padding="0" 
+                            BorderBrush="Black" 
+                            CornerRadius="0" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+		<!-- Style for 2D buttons (MouseOver event) -->
+        <Style x:Key="Button2DStyleMouseOver" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness="2"
+                            Padding="0" 
+                            BorderBrush="Black" 
+                            CornerRadius="0" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+		
+		<!-- Button editor movements style -->
+        <Style TargetType="Button" x:Key="ButtonEditorMovementStyle">
+            <Setter Property="Margin" Value="9,3"/>
+			<Setter Property="Padding" Value="6,1"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontSize" Value="14"/>
+            <Setter Property="MinWidth" Value="40"/>
+            <Setter Property="MinHeight" Value="32"/>
+        </Style>
+
+        <!-- Small separator style -->
+        <Style TargetType="Separator" x:Key="SeparatorSmallStyle">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="16"/>
+        </Style>
+
+		<!-- TextBox info style -->
+        <Style TargetType="TextBox" x:Key="TextBoxInfoStyle">
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+			<Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+			<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+			<Setter Property="MinHeight" Value="80"/>
+        </Style>
+		
+		<!-- Styles for library 2D layer views rectangles-->
+        <Style TargetType="Rectangle" x:Key="LibraryRectanglesMainFaceStyle">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="200"/>
+            <Setter Property="StrokeThickness" Value="10"/>
+            <Setter Property="RadiusX" Value="2"/>
+            <Setter Property="RadiusY" Value="2"/>
+        </Style>
+
+        <Style TargetType="Rectangle" x:Key="LibraryRectanglesSecFaceStyleHoriz">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="StrokeThickness" Value="10"/>
+            <Setter Property="RadiusX" Value="2"/>
+            <Setter Property="RadiusY" Value="2"/>
+        </Style>
+
+        <Style TargetType="Rectangle" x:Key="LibraryRectanglesSecFaceStyleVert">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="200"/>
+            <Setter Property="StrokeThickness" Value="10"/>
+            <Setter Property="RadiusX" Value="2"/>
+            <Setter Property="RadiusY" Value="2"/>
+        </Style>
+		
+		<!-- Styles for color pickers in the settings tab -->
+		<Style TargetType="xctk:ColorPicker" x:Key="SettingsColorPickerStyle">
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+
+        <!-- Styles for color pickers in the progress tab -->
+        <Style TargetType="xctk:ColorPicker" x:Key="ProgressColorPickerStyle">
+            <Setter Property="Width" Value="44"/>
+            <Setter Property="MinHeight" Value="14"/>
+            <Setter Property="Margin" Value="9,1,2,1"/>
+        </Style>
+
+        <!-- Arrows for listview columns order -->
+        <DataTemplate x:Key="ArrowUp">
+            <DockPanel>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding}" />
+                <Path VerticalAlignment="Center" Fill="Black" Data="M 5,5 15,5 10,0 5,5" />
+            </DockPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ArrowDown">
+            <DockPanel>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding}" />
+                <Path VerticalAlignment="Center" Fill="Black" Data="M 5,0 10,5 15,0 5,0" />
+            </DockPanel>
+        </DataTemplate>
+        
+    </Application.Resources>
+</Application>

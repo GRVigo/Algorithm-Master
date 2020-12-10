@@ -1,0 +1,135 @@
+﻿<Window x:Name="ResultChronoWindow" x:Class="Algorithm_Master.ResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Algorithm_Master"
+        mc:Ignorable="d"
+        Width="600" WindowStyle="ToolWindow" ResizeMode="NoResize" ShowInTaskbar="False" SizeToContent="Height">
+    <Window.Title>Chronometer result</Window.Title>
+    <Grid UseLayoutRounding="True">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Results status 1 -->
+            <RowDefinition Height="Auto"/> <!-- Results status 2 -->
+            <RowDefinition Height="Auto"/> <!-- Results status 3 -->
+            <RowDefinition Height="Auto"/> <!-- Results status 4 -->
+            <RowDefinition Height="Auto"/> <!-- Results status 5 -->
+            <RowDefinition Height="*"/> <!-- Results controls -->
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" UseLayoutRounding="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3">
+                <TextBlock x:Name="StartTimeTitleLabelText">Solve date &amp; time:</TextBlock>
+            </Label>
+            <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3">
+                <TextBlock x:Name="StartTimeResultLabelText">-</TextBlock>
+            </Label>
+            <Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3">
+                <TextBlock x:Name="SolvingTypeTitleLabelText">Type of solve:</TextBlock>
+            </Label>
+            <Label Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3" FontWeight="Bold">
+                <TextBlock x:Name="SolvingTypeResultLabelText">-</TextBlock>
+            </Label>
+        </Grid>
+
+        <Grid Grid.Row="1" UseLayoutRounding="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3">
+                <TextBlock x:Name="ChronoTimeTitleLabelText">Chrono result:</TextBlock>
+            </Label>
+            <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3" FontWeight="Bold">
+                <TextBlock x:Name="ChronoTimeResultLabelText">-</TextBlock>
+            </Label>
+            <Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3">
+                <TextBlock x:Name="DelayPenaltyTitleLabelText">Inspection penalty:</TextBlock>
+            </Label>
+            <Label Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3" FontWeight="Bold">
+                <TextBlock x:Name="DelayPenaltyResultLabelText">-</TextBlock>
+            </Label>
+        </Grid>
+
+        <Grid Grid.Row="2" UseLayoutRounding="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3">
+                <TextBlock x:Name="ScrambleTitleLabelText">Scramble:</TextBlock>
+            </Label>
+            <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3">
+                <TextBlock x:Name="ScrambleResultLabelText">-</TextBlock>
+            </Label>
+        </Grid>
+
+        <Grid Grid.Row="3" UseLayoutRounding="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3">
+                <TextBlock x:Name="CubeTitleLabelText">Cube:</TextBlock>
+            </Label>
+            <TextBox Grid.Column="1" x:Name="CubeResultTextBox" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="3,3,9,3" Padding="1"></TextBox>
+        </Grid>
+
+        <Grid Grid.Row="4" UseLayoutRounding="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="3">
+                <TextBlock x:Name="CommentTitleLabelText">Comment:</TextBlock>
+            </Label>
+            <TextBox Grid.Column="1" x:Name="CommentResultTextBox" VerticalAlignment="Center" HorizontalAlignment="Stretch" MinHeight="80" TextWrapping="Wrap" Margin="3,3,9,3" AcceptsReturn="True" MaxLines="50" VerticalScrollBarVisibility="Auto"/>
+        </Grid>
+
+        <Grid Grid.Row="5" UseLayoutRounding="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <RadioButton x:Name="ResultOKRadioButton" Margin="3" FlowDirection="RightToLeft" Checked="ResultRadioButton_Checked">
+                    <TextBlock x:Name="ResultOKRadioButtonText" FontSize="14">Solve OK</TextBlock>
+                </RadioButton>
+                <RadioButton x:Name="Result2SRadioButton" Margin="3" FlowDirection="RightToLeft" Checked="ResultRadioButton_Checked">
+                    <TextBlock x:Name="Result2SRadioButtonText" FontSize="14">Penalty +2s</TextBlock>
+                </RadioButton>
+                <RadioButton x:Name="ResultDNSRadioButton" Margin="3" FlowDirection="RightToLeft" Checked="ResultRadioButton_Checked">
+                    <TextBlock x:Name="ResultDNSRadioButtonText" FontSize="14">DNS</TextBlock>
+                </RadioButton>
+                <RadioButton x:Name="ResultDNFRadioButton" Margin="3,3,3,8" FlowDirection="RightToLeft" Checked="ResultRadioButton_Checked">
+                    <TextBlock x:Name="ResultDNFRadioButtonText" FontSize="14">DNF</TextBlock>
+                </RadioButton>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <Button x:Name="SaveResultButton" IsDefault="True" Margin="24,18,24,6" Click="SaveResultButton_Click">
+                    <TextBlock x:Name="SaveResultButtonText" FontSize="14">Save result</TextBlock>
+                </Button>
+                <Button x:Name="CancelResultButton" IsCancel="True" Margin="32,6" Click="CancelResultButton_Click">
+                    <TextBlock x:Name="CancelResultButtonText">Cancel</TextBlock>
+                </Button>
+            </StackPanel>
+        </Grid>
+		
+    </Grid>
+</Window>
